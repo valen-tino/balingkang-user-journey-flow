@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage";
 import ProfileCreatePage from "./pages/ProfileCreatePage";
 import StudentDashboardPage from "./pages/student/StudentDashboardPage";
 import TeacherDashboardPage from "./pages/teacher/TeacherDashboardPage";
+import GuardianDashboardPage from "./pages/guardian/GuardianDashboardPage";
 import NewCoursesPage from "./pages/student/NewCoursesPage";
 import AttendancePage from "./pages/teacher/AttendancePage";
 
@@ -35,6 +36,9 @@ const App = () => (
           {/* Teacher Routes */}
           <Route path="/dashboard/teacher" element={<TeacherDashboardPage />} />
           <Route path="/dashboard/teacher/attendance/:classId" element={<AttendancePage />} />
+          
+          {/* Guardian Routes */}
+          <Route path="/dashboard/guardian" element={<GuardianDashboardPage />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
