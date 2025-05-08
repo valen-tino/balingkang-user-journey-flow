@@ -17,6 +17,7 @@ import AttendancePage from "./pages/teacher/AttendancePage";
 import AboutPage from "./pages/AboutPage";
 import BiodataPage from "./pages/student/BiodataPage";
 import ContactPage from "./pages/ContactPage";
+import CoursesPage from "./pages/CoursesPage";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/courses" element={<CoursesPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile/create" element={<ProfileCreatePage />} />
