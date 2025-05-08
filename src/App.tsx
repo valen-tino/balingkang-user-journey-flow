@@ -14,6 +14,8 @@ import TeacherDashboardPage from "./pages/teacher/TeacherDashboardPage";
 import GuardianDashboardPage from "./pages/guardian/GuardianDashboardPage";
 import NewCoursesPage from "./pages/student/NewCoursesPage";
 import AttendancePage from "./pages/teacher/AttendancePage";
+import AboutPage from "./pages/AboutPage";
+import BiodataPage from "./pages/student/BiodataPage";
 
 const queryClient = new QueryClient();
 
@@ -24,13 +26,16 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Index />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile/create" element={<ProfileCreatePage />} />
           
           {/* Student Routes */}
           <Route path="/dashboard/student" element={<StudentDashboardPage />} />
+          <Route path="/dashboard/student/biodata" element={<BiodataPage />} />
           <Route path="/dashboard/student/new-courses" element={<NewCoursesPage />} />
           
           {/* Teacher Routes */}
@@ -39,6 +44,9 @@ const App = () => (
           
           {/* Guardian Routes */}
           <Route path="/dashboard/guardian" element={<GuardianDashboardPage />} />
+          <Route path="/dashboard/guardian/ward/:wardId" element={<GuardianDashboardPage />} />
+          <Route path="/dashboard/guardian/add-ward" element={<GuardianDashboardPage />} />
+          <Route path="/dashboard/guardian/schedule" element={<GuardianDashboardPage />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
