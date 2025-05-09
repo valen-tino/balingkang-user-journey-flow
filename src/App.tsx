@@ -17,6 +17,7 @@ import MyCoursesPage from "./pages/student/MyCoursesPage";
 import ClassmatesPage from "./pages/student/ClassmatesPage";
 import ExamResultsPage from "./pages/student/ExamResultsPage";
 import CertificatesPage from "./pages/student/CertificatesPage";
+import SchedulePage from "./pages/student/SchedulePage";
 import AttendancePage from "./pages/teacher/AttendancePage";
 import ClassDetailsPage from "./pages/teacher/ClassDetailsPage";
 import UploadResultsPage from "./pages/teacher/UploadResultsPage";
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/dashboard/student/classmates" element={<ClassmatesPage />} />
           <Route path="/dashboard/student/exam-results" element={<ExamResultsPage />} />
           <Route path="/dashboard/student/certificates" element={<CertificatesPage />} />
+          <Route path="/dashboard/student/schedule" element={<SchedulePage />} />
           
           {/* Teacher Routes */}
           <Route path="/dashboard/teacher" element={<TeacherDashboardPage />} />

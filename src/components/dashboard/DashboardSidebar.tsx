@@ -90,8 +90,8 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ userType, userName, userP
             <SidebarLink to="/dashboard/student/my-courses" icon={<BookOpen size={18} />}>
               Kursus Saya
             </SidebarLink>
-            <SidebarLink to="/dashboard/student/schedule" icon={<CalendarDays size={18} />}>
-              Jadwal
+            <SidebarLink to="/dashboard/student/schedule" icon={<Calendar size={18} />}>
+              Jadwal Kelas
             </SidebarLink>
             <SidebarLink to="/dashboard/student/classmates" icon={<Users size={18} />}>
               Teman Sekelas
