@@ -53,6 +53,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				confucius: {
+					green: '#008A5E',
+					blue: '#00375F',
+					red: '#C42127',
+					gold: '#E7A92F',
+					lightGreen: '#E5F3EE',
+					lightBlue: '#E5EEF3',
+					lightRed: '#F9E5E6',
+					lightGold: '#FCF6E9',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

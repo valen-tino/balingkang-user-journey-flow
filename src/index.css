@@ -14,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 260 50% 50%; /* Custom purple */
+    --primary: 160 100% 27%; /* Confucius green */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -31,18 +31,18 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 260 50% 50%; /* Match primary */
+    --ring: 160 100% 27%; /* Match primary */
 
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 260 50% 50%; /* Match primary */
+    --sidebar-primary: 160 100% 27%; /* Match primary */
     --sidebar-primary-foreground: 0 0% 98%;
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 260 50% 50%; /* Match primary */
+    --sidebar-ring: 160 100% 27%; /* Match primary */
   }
 
   .dark {
@@ -55,7 +55,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 260 50% 55%; /* Slightly lighter in dark mode */
+    --primary: 160 84% 39%; /* Slightly lighter green in dark mode */
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -75,12 +75,12 @@
     --ring: 212.7 26.8% 83.9%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 260 50% 55%; /* Match dark mode primary */
+    --sidebar-primary: 160 84% 39%; /* Match dark mode primary */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 260 50% 55%; /* Match dark mode primary */
+    --sidebar-ring: 160 84% 39%; /* Match dark mode primary */
   }
 }
 
@@ -91,6 +91,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 }
 
@@ -108,4 +109,19 @@
 
 .animate-fade-in {
   animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Educational card styles */
+.education-card {
+  @apply bg-gradient-to-br from-white to-confucius-lightGreen transition-all duration-300 hover:shadow-md;
+}
+
+/* Cultural-themed buttons and accents */
+.cultural-accent {
+  @apply bg-gradient-to-r from-confucius-green to-confucius-green/90;
+}
+
+/* Clean, accessible form styles */
+.clean-form-input {
+  @apply border-2 border-gray-200 focus:border-confucius-green focus:ring-1 focus:ring-confucius-green transition-colors duration-200;
 }
