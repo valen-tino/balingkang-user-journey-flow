@@ -11,7 +11,13 @@ import {
   LogOut,
   Home,
   FileText,
-  Upload
+  Upload,
+  Users,
+  GraduationCap,
+  CalendarDays,
+  ClipboardCheck,
+  LayoutDashboard,
+  UserPlus
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -53,20 +59,17 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ userType, userName, userP
       case "teacher":
         return (
           <>
-            <SidebarLink to="/dashboard/teacher" icon={<Home size={18} />} end>
+            <SidebarLink to="/dashboard/teacher" icon={<LayoutDashboard size={18} />} end>
               Dashboard
             </SidebarLink>
-            <SidebarLink to="/dashboard/teacher/calendar" icon={<Calendar size={18} />}>
-              Kalender Mengajar
+            <SidebarLink to="/dashboard/teacher/attendance" icon={<ClipboardCheck size={18} />}>
+              Absensi
             </SidebarLink>
-            <SidebarLink to="/dashboard/teacher/classes" icon={<BookOpen size={18} />}>
-              Daftar Kelas
+            <SidebarLink to="/dashboard/teacher/grades" icon={<FileText size={18} />}>
+              Nilai
             </SidebarLink>
-            <SidebarLink to="/dashboard/teacher/attendance" icon={<CheckSquare size={18} />}>
-              Validasi Kehadiran
-            </SidebarLink>
-            <SidebarLink to="/dashboard/teacher/grades" icon={<Upload size={18} />}>
-              Upload Nilai
+            <SidebarLink to="/dashboard/teacher/upload-results" icon={<Upload size={18} />}>
+              Unggah Hasil Ujian
             </SidebarLink>
           </>
         );
@@ -75,23 +78,26 @@ const DashboardSidebar: FC<DashboardSidebarProps> = ({ userType, userName, userP
       default:
         return (
           <>
-            <SidebarLink to="/dashboard/student" icon={<Home size={18} />} end>
+            <SidebarLink to="/dashboard/student" icon={<LayoutDashboard size={18} />} end>
               Dashboard
             </SidebarLink>
             <SidebarLink to="/dashboard/student/biodata" icon={<User size={18} />}>
               Biodata
             </SidebarLink>
+            <SidebarLink to="/dashboard/student/new-courses" icon={<GraduationCap size={18} />}>
+              Kursus Baru
+            </SidebarLink>
             <SidebarLink to="/dashboard/student/my-courses" icon={<BookOpen size={18} />}>
               Kursus Saya
             </SidebarLink>
-            <SidebarLink to="/dashboard/student/new-courses" icon={<FileText size={18} />}>
-              Daftar Kursus Baru
-            </SidebarLink>
-            <SidebarLink to="/dashboard/student/schedule" icon={<Calendar size={18} />}>
+            <SidebarLink to="/dashboard/student/schedule" icon={<CalendarDays size={18} />}>
               Jadwal
             </SidebarLink>
-            <SidebarLink to="/dashboard/student/attendance" icon={<CheckSquare size={18} />}>
-              Kehadiran
+            <SidebarLink to="/dashboard/student/classmates" icon={<Users size={18} />}>
+              Teman Sekelas
+            </SidebarLink>
+            <SidebarLink to="/dashboard/student/exam-results" icon={<FileText size={18} />}>
+              Hasil Ujian
             </SidebarLink>
             <SidebarLink to="/dashboard/student/certificates" icon={<Award size={18} />}>
               Sertifikat

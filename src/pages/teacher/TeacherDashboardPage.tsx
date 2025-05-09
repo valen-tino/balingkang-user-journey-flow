@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Calendar, Clock, FileText, Users } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -81,52 +81,47 @@ const TeacherDashboardPage = () => {
       </div>
       
       {/* Dashboard Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Kelas Aktif
-            </CardTitle>
+            <CardTitle className="text-base font-medium">Total Kelas</CardTitle>
+            <CardDescription>Semester Ini</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{activeCourses.length}</div>
-            <p className="text-xs text-muted-foreground">Total kelas yang diajar</p>
+            <div className="text-2xl font-bold">3</div>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Total Siswa
-            </CardTitle>
+            <CardTitle className="text-base font-medium">Total Siswa</CardTitle>
+            <CardDescription>Semester Ini</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">30</div>
-            <p className="text-xs text-muted-foreground">Di semua kelas aktif</p>
+            <div className="text-2xl font-bold">45</div>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Kelas Hari Ini
-            </CardTitle>
+            <CardTitle className="text-base font-medium">Kehadiran</CardTitle>
+            <CardDescription>Rata-rata</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{todayClasses.length}</div>
-            <p className="text-xs text-muted-foreground">2 sesi mengajar</p>
+            <div className="text-2xl font-bold">92%</div>
           </CardContent>
         </Card>
         
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Nilai Belum Diupload
-            </CardTitle>
+            <CardTitle className="text-base font-medium">Hasil Ujian</CardTitle>
+            <CardDescription>Perlu Diunggah</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">1</div>
-            <p className="text-xs text-muted-foreground">Perlu perhatian</p>
+            <div className="text-2xl font-bold">2</div>
+            <Button variant="outline" size="sm" className="mt-2 w-full" asChild>
+              <Link to="/dashboard/teacher/upload-results">Unggah Hasil</Link>
+            </Button>
           </CardContent>
         </Card>
       </div>

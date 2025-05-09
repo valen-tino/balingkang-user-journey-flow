@@ -13,7 +13,13 @@ import StudentDashboardPage from "./pages/student/StudentDashboardPage";
 import TeacherDashboardPage from "./pages/teacher/TeacherDashboardPage";
 import GuardianDashboardPage from "./pages/guardian/GuardianDashboardPage";
 import NewCoursesPage from "./pages/student/NewCoursesPage";
+import MyCoursesPage from "./pages/student/MyCoursesPage";
+import ClassmatesPage from "./pages/student/ClassmatesPage";
+import ExamResultsPage from "./pages/student/ExamResultsPage";
+import CertificatesPage from "./pages/student/CertificatesPage";
 import AttendancePage from "./pages/teacher/AttendancePage";
+import ClassDetailsPage from "./pages/teacher/ClassDetailsPage";
+import UploadResultsPage from "./pages/teacher/UploadResultsPage";
 import AboutPage from "./pages/AboutPage";
 import BiodataPage from "./pages/student/BiodataPage";
 import ContactPage from "./pages/ContactPage";
@@ -41,12 +47,16 @@ const App = () => (
           <Route path="/dashboard/student" element={<StudentDashboardPage />} />
           <Route path="/dashboard/student/biodata" element={<BiodataPage />} />
           <Route path="/dashboard/student/new-courses" element={<NewCoursesPage />} />
-          <Route path="/dashboard/student/my-courses/:courseId" element={<StudentDashboardPage />} />
-          <Route path="/dashboard/student/schedule" element={<StudentDashboardPage />} />
+          <Route path="/dashboard/student/my-courses" element={<MyCoursesPage />} />
+          <Route path="/dashboard/student/classmates" element={<ClassmatesPage />} />
+          <Route path="/dashboard/student/exam-results" element={<ExamResultsPage />} />
+          <Route path="/dashboard/student/certificates" element={<CertificatesPage />} />
           
           {/* Teacher Routes */}
           <Route path="/dashboard/teacher" element={<TeacherDashboardPage />} />
-          <Route path="/dashboard/teacher/attendance/:classId" element={<AttendancePage />} />
+          <Route path="/dashboard/teacher/attendance" element={<AttendancePage />} />
+          <Route path="/dashboard/teacher/class/:id" element={<ClassDetailsPage />} />
+          <Route path="/dashboard/teacher/upload-results" element={<UploadResultsPage />} />
           
           {/* Guardian Routes */}
           <Route path="/dashboard/guardian" element={<GuardianDashboardPage />} />

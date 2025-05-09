@@ -1,0 +1,90 @@
+@startuml Balingkang Sitemap
+
+skinparam {
+  ArrowColor #2563eb
+  BackgroundColor white
+  BorderColor #64748b
+  NodeBackgroundColor #f8fafc
+  NodeBorderColor #94a3b8
+  PackageBackgroundColor #f1f5f9
+  PackageBorderColor #64748b
+}
+
+title Balingkang Project Sitemap
+
+package "Public Pages" {
+  [Home] as home
+  [About] as about
+  [Contact] as contact
+  [Courses] as courses
+}
+
+package "Authentication" {
+  [Register] as register
+  [Login] as login
+  [Profile Creation] as profile_create
+}
+
+package "Student Dashboard" {
+  [Main Dashboard] as student_dashboard
+  [Biodata] as student_biodata
+  [New Courses] as student_new_courses
+  [My Courses] as student_my_courses
+  [Schedule] as student_schedule
+  [Classmates] as student_classmates
+  [Exam Results] as student_exam_results
+  [Certificates] as student_certificates
+}
+
+package "Teacher Dashboard" {
+  [Main Dashboard] as teacher_dashboard
+  [Attendance] as teacher_attendance
+  [Class Details] as teacher_class_details
+  [Grades] as teacher_grades
+  [Upload Exam Results] as teacher_upload_results
+}
+
+package "Guardian Dashboard" {
+  [Main Dashboard] as guardian_dashboard
+  [Ward Details] as guardian_ward_details
+  [Add Ward] as guardian_add_ward
+  [Schedule] as guardian_schedule
+}
+
+package "Error Pages" {
+  [Not Found] as not_found
+}
+
+' Define relationships
+home --> about
+home --> contact
+home --> courses
+home --> register
+home --> login
+
+register --> profile_create
+login --> student_dashboard
+login --> teacher_dashboard
+login --> guardian_dashboard
+
+' Student dashboard relationships
+student_dashboard --> student_biodata
+student_dashboard --> student_new_courses
+student_dashboard --> student_my_courses
+student_dashboard --> student_schedule
+student_dashboard --> student_classmates
+student_dashboard --> student_exam_results
+student_dashboard --> student_certificates
+
+' Teacher dashboard relationships
+teacher_dashboard --> teacher_attendance
+teacher_dashboard --> teacher_class_details
+teacher_dashboard --> teacher_grades
+teacher_dashboard --> teacher_upload_results
+
+' Guardian dashboard relationships
+guardian_dashboard --> guardian_ward_details
+guardian_dashboard --> guardian_add_ward
+guardian_dashboard --> guardian_schedule
+
+@enduml

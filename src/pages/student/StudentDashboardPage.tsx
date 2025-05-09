@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, CheckSquare, Clock, FileText } from "lucide-react";
+import { Award, Calendar, CheckSquare, Clock, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "@/layouts/DashboardLayout";
 
@@ -96,6 +96,9 @@ const StudentDashboardPage = () => {
           <CardContent>
             <div className="text-2xl font-bold">0</div>
             <p className="text-xs text-muted-foreground">Belum ada sertifikat</p>
+            <Button variant="outline" size="sm" className="mt-2" asChild>
+              <Link to="/dashboard/student/certificates">Lihat Sertifikat</Link>
+            </Button>
           </CardContent>
         </Card>
       </div>
