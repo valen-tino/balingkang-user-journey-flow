@@ -115,11 +115,16 @@ const ProfileCreatePage = () => {
   maxDate.setFullYear(maxDate.getFullYear() - 5); // Minimum age 5 years
   const minDate = new Date();
   minDate.setFullYear(minDate.getFullYear() - 70); // Maximum age 70 years
+  
+  // Set a sensible default date for better UX (15 years ago)
+  const defaultDate = new Date();
+  defaultDate.setFullYear(defaultDate.getFullYear() - 15);
 
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
       fullName: "",
+      dateOfBirth: defaultDate, // Set a default date
       gender: "male",
       status: "general",
       phone: "",
@@ -182,6 +187,11 @@ const ProfileCreatePage = () => {
     setProfilePhoto(file);
   };
 
+  const formatDisplayDate = (date: Date | undefined) => {
+    if (!date) return "";
+    return format(date, "d MMMM yyyy");
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4">
       <div className="container max-w-3xl mx-auto">
@@ -228,13 +238,13 @@ const ProfileCreatePage = () => {
                                     <Button
                                       variant="outline"
                                       className={cn(
-                                        "pl-3 text-left font-normal",
+                                        "w-full pl-3 text-left font-normal",
                                         !field.value && "text-muted-foreground"
                                       )}
                                       disabled={isSubmitting}
                                     >
                                       {field.value ? (
-                                        format(field.value, "dd/MM/yyyy")
+                                        formatDisplayDate(field.value)
                                       ) : (
                                         <span>Pilih tanggal</span>
                                       )}
@@ -242,7 +252,7 @@ const ProfileCreatePage = () => {
                                     </Button>
                                   </FormControl>
                                 </PopoverTrigger>
-                                <PopoverContent className="w-auto p-0 z-50 pointer-events-auto" align="start">
+                                <PopoverContent className="w-auto p-0 z-50" align="start">
                                   <Calendar
                                     mode="single"
                                     selected={field.value}
@@ -250,11 +260,17 @@ const ProfileCreatePage = () => {
                                     disabled={(date) =>
                                       date > maxDate || date < minDate
                                     }
+                                    defaultMonth={field.value || defaultDate}
                                     initialFocus
-                                    className="p-3 pointer-events-auto"
+                                    captionLayout="dropdown-buttons"
+                                    fromYear={minDate.getFullYear()}
+                                    toYear={maxDate.getFullYear()}
                                   />
                                 </PopoverContent>
                               </Popover>
+                              <FormDescription>
+                                Format: Hari Bulan Tahun
+                              </FormDescription>
                               <FormMessage />
                             </FormItem>
                           )}
