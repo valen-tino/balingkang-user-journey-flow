@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -63,11 +62,10 @@ const LoginPage = () => {
       // If successful:
       toast.success("Login berhasil!");
       
-      // Redirect based on user type and status
+      // User can now navigate to any page they choose
       if (isFirstLogin) {
         navigate("/profile/create");
       } else {
-        // This logic would depend on user role from API
         navigate("/dashboard/student"); // or /dashboard/teacher
       }
     } catch (error) {

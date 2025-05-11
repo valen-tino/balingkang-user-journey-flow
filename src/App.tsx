@@ -46,7 +46,7 @@ const App = () => (
           <Route path="/profile/create" element={<ProfileCreatePage />} />
           <Route path="/design-system" element={<DesignSystemPage />} />
           
-          {/* Student Routes */}
+          {/* Student Routes - now public */}
           <Route path="/dashboard/student" element={<StudentDashboardPage />} />
           <Route path="/dashboard/student/biodata" element={<BiodataPage />} />
           <Route path="/dashboard/student/new-courses" element={<NewCoursesPage />} />
@@ -56,13 +56,13 @@ const App = () => (
           <Route path="/dashboard/student/certificates" element={<CertificatesPage />} />
           <Route path="/dashboard/student/schedule" element={<SchedulePage />} />
           
-          {/* Teacher Routes */}
+          {/* Teacher Routes - now public */}
           <Route path="/dashboard/teacher" element={<TeacherDashboardPage />} />
           <Route path="/dashboard/teacher/attendance" element={<AttendancePage />} />
           <Route path="/dashboard/teacher/class/:id" element={<ClassDetailsPage />} />
           <Route path="/dashboard/teacher/upload-results" element={<UploadResultsPage />} />
           
-          {/* Guardian Routes */}
+          {/* Guardian Routes - now public */}
           <Route path="/dashboard/guardian" element={<GuardianDashboardPage />} />
           <Route path="/dashboard/guardian/ward/:wardId" element={<GuardianDashboardPage />} />
           <Route path="/dashboard/guardian/add-ward" element={<GuardianDashboardPage />} />
