@@ -25,6 +25,7 @@ import AboutPage from "./pages/AboutPage";
 import BiodataPage from "./pages/student/BiodataPage";
 import ContactPage from "./pages/ContactPage";
 import CoursesPage from "./pages/CoursesPage";
+import DesignSystemPage from "./pages/DesignSystemPage";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/profile/create" element={<ProfileCreatePage />} />
+          <Route path="/design-system" element={<DesignSystemPage />} />
           
           {/* Student Routes */}
           <Route path="/dashboard/student" element={<StudentDashboardPage />} />
