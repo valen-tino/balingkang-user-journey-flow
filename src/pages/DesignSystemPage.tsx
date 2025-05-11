@@ -524,7 +524,7 @@ const DesignSystemPage = () => {
 
 // Function to export the design system as a standalone HTML file
 const exportToHTML = () => {
-  // Create the HTML content with embedded styles and Tailwind
+  // Create the HTML content with embedded CSS, no external dependencies
   const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
@@ -532,58 +532,297 @@ const exportToHTML = () => {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Balingkang Design System</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            confucius: {
-              green: '#008A5E',
-              blue: '#00375F',
-              red: '#C42127',
-              gold: '#E7A92F',
-              lightGreen: '#E5F3EE',
-              lightBlue: '#E5EEF3',
-              lightRed: '#F9E5E6',
-              lightGold: '#FCF6E9',
-            }
-          },
-          animation: {
-            'fade-in': 'fadeIn 0.3s ease-out',
-            'scale-in': 'scaleIn 0.2s ease-out',
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: '0', transform: 'translateY(10px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-            scaleIn: {
-              '0%': { transform: 'scale(0.95)', opacity: '0' },
-              '100%': { transform: 'scale(1)', opacity: '1' },
-            }
-          }
-        }
-      }
-    };
-  </script>
   <style>
-    /* Base styles */
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.5;
+      color: #111827;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+    
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* Layout utilities */
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-2 { margin-bottom: 0.5rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-4 { margin-top: 1rem; }
+    .mt-6 { margin-top: 1.5rem; }
+    .mt-8 { margin-top: 2rem; }
+    .my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .p-2 { padding: 0.5rem; }
+    .p-4 { padding: 1rem; }
+    .p-6 { padding: 1.5rem; }
+    .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .pb-4 { padding-bottom: 1rem; }
+    .pt-8 { padding-top: 2rem; }
+    
+    /* Grid system */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    
+    @media (min-width: 640px) {
+      .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      
+      .grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+    
+    .gap-4 {
+      gap: 1rem;
+    }
+    
+    .gap-6 {
+      gap: 1.5rem;
+    }
+    
+    /* Flex layout */
+    .flex {
+      display: flex;
+    }
+    
+    .flex-col {
+      flex-direction: column;
+    }
+    
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+    
+    .items-center {
+      align-items: center;
+    }
+    
+    .justify-between {
+      justify-content: space-between;
+    }
+    
+    .gap-2 {
+      gap: 0.5rem;
+    }
+    
+    .gap-3 {
+      gap: 0.75rem;
+    }
+    
+    .space-y-1 > * + * {
+      margin-top: 0.25rem;
+    }
+    
+    .space-y-4 > * + * {
+      margin-top: 1rem;
+    }
+    
+    /* Typography */
+    .text-xs {
+      font-size: 0.75rem;
+    }
+    
+    .text-sm {
+      font-size: 0.875rem;
+    }
+    
+    .text-base {
+      font-size: 1rem;
+    }
+    
+    .text-lg {
+      font-size: 1.125rem;
+    }
+    
+    .text-xl {
+      font-size: 1.25rem;
+    }
+    
+    .text-2xl {
+      font-size: 1.5rem;
+    }
+    
+    .text-3xl {
+      font-size: 1.875rem;
+    }
+    
+    .font-normal {
+      font-weight: 400;
+    }
+    
+    .font-medium {
+      font-weight: 500;
+    }
+    
+    .font-semibold {
+      font-weight: 600;
+    }
+    
+    .font-bold {
+      font-weight: 700;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    /* Colors */
+    .bg-white {
+      background-color: #ffffff;
+    }
+    
+    .bg-gray-100 {
+      background-color: #f3f4f6;
+    }
+    
+    .bg-gray-200 {
+      background-color: #e5e7eb;
+    }
+    
+    .bg-gray-300 {
+      background-color: #d1d5db;
+    }
+    
+    .text-white {
+      color: #ffffff;
+    }
+    
+    .text-gray-500 {
+      color: #6b7280;
+    }
+    
+    .text-gray-600 {
+      color: #4b5563;
+    }
+    
+    .text-gray-700 {
+      color: #374151;
+    }
+    
+    .text-gray-900 {
       color: #111827;
     }
     
-    /* Interactive elements */
-    .hover-card {
-      transition: all 0.3s ease;
-    }
-    .hover-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    .border {
+      border-width: 1px;
+      border-style: solid;
     }
     
+    .border-gray-200 {
+      border-color: #e5e7eb;
+    }
+    
+    .border-gray-300 {
+      border-color: #d1d5db;
+    }
+    
+    /* Confucius Institute Colors */
+    .bg-confucius-green {
+      background-color: #008A5E;
+    }
+    
+    .bg-confucius-blue {
+      background-color: #00375F;
+    }
+    
+    .bg-confucius-red {
+      background-color: #C42127;
+    }
+    
+    .bg-confucius-gold {
+      background-color: #E7A92F;
+    }
+    
+    .bg-confucius-lightGreen {
+      background-color: #E5F3EE;
+    }
+    
+    .bg-confucius-lightBlue {
+      background-color: #E5EEF3;
+    }
+    
+    .bg-confucius-lightRed {
+      background-color: #F9E5E6;
+    }
+    
+    .bg-confucius-lightGold {
+      background-color: #FCF6E9;
+    }
+    
+    .text-confucius-green {
+      color: #008A5E;
+    }
+    
+    .text-confucius-blue {
+      color: #00375F;
+    }
+    
+    .text-confucius-red {
+      color: #C42127;
+    }
+    
+    .text-confucius-gold {
+      color: #E7A92F;
+    }
+    
+    /* Components */
+    .rounded-md {
+      border-radius: 0.375rem;
+    }
+    
+    .rounded-lg {
+      border-radius: 0.5rem;
+    }
+    
+    .rounded-full {
+      border-radius: 9999px;
+    }
+    
+    .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+    
+    .shadow-md {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    /* Buttons */
     .button {
       display: inline-flex;
       align-items: center;
@@ -593,6 +832,7 @@ const exportToHTML = () => {
       padding: 0.5rem 1rem;
       transition: all 0.2s ease;
       cursor: pointer;
+      border: none;
     }
     
     .button-primary {
@@ -620,6 +860,23 @@ const exportToHTML = () => {
       background-color: #a31c22;
     }
     
+    /* Cards */
+    .card {
+      background-color: white;
+      border-radius: 0.5rem;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+    }
+    
+    .hover-card {
+      transition: all 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* Badges */
     .badge {
       display: inline-flex;
       align-items: center;
@@ -628,10 +885,85 @@ const exportToHTML = () => {
       font-size: 0.75rem;
       font-weight: 600;
     }
+    
+    /* Inputs */
+    .input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      background-color: #fff;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+    
+    .input:focus {
+      outline: none;
+      border-color: #008A5E;
+      box-shadow: 0 0 0 3px rgba(0, 138, 94, 0.1);
+    }
+    
+    /* Labels */
+    .label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.25rem;
+    }
+    
+    /* Gradient backgrounds */
+    .bg-gradient-green {
+      background: linear-gradient(to bottom right, white, #E5F3EE);
+    }
+    
+    .bg-gradient-blue {
+      background: linear-gradient(to bottom right, white, #E5EEF3);
+    }
+    
+    .bg-gradient-gold {
+      background: linear-gradient(to bottom right, white, #FCF6E9);
+    }
+    
+    /* Border accents */
+    .border-l-4 {
+      border-left-width: 4px;
+      border-left-style: solid;
+    }
+    
+    .border-confucius-green {
+      border-color: #008A5E;
+    }
+    
+    .border-confucius-blue {
+      border-color: #00375F;
+    }
+    
+    .border-confucius-gold {
+      border-color: #E7A92F;
+    }
+    
+    /* Interactive states */
+    .hover-state {
+      transition: all 0.3s ease;
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Footer */
+    footer {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e7eb;
+      color: #6b7280;
+      text-align: center;
+    }
   </style>
 </head>
-<body class="bg-white">
-  <div class="container mx-auto px-4 py-8 max-w-6xl">
+<body>
+  <div class="container py-8">
     <h1 class="text-3xl font-bold mb-8 border-b pb-4">
       Balingkang Design System
     </h1>
@@ -642,7 +974,7 @@ const exportToHTML = () => {
       
       <div class="mb-6">
         <h3 class="text-lg font-medium mb-3">Brand Colors</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 grid-cols-4">
           <div class="flex flex-col items-center">
             <div class="w-16 h-16 rounded-md shadow-md mb-2 bg-confucius-green"></div>
             <span class="text-xs text-gray-700 font-medium">Green</span>
@@ -668,7 +1000,7 @@ const exportToHTML = () => {
       
       <div class="mb-6">
         <h3 class="text-lg font-medium mb-3">Light Variations</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-2 grid-cols-4">
           <div class="flex flex-col items-center">
             <div class="w-16 h-16 rounded-md shadow-md mb-2 bg-confucius-lightGreen"></div>
             <span class="text-xs text-gray-700 font-medium">Light Green</span>
@@ -746,6 +1078,74 @@ const exportToHTML = () => {
       </div>
     </section>
 
+    <!-- Spacing Section -->
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4">Spacing Scale</h2>
+      <div class="grid grid-cols-2 grid-cols-4">
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-gray-300" style="width: 100px; height: 0.25rem"></div>
+          <span class="text-xs text-gray-500 mt-1">0.25rem (1)</span>
+        </div>
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-gray-300" style="width: 100px; height: 0.5rem"></div>
+          <span class="text-xs text-gray-500 mt-1">0.5rem (2)</span>
+        </div>
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-gray-300" style="width: 100px; height: 1rem"></div>
+          <span class="text-xs text-gray-500 mt-1">1rem (4)</span>
+        </div>
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-gray-300" style="width: 100px; height: 2rem"></div>
+          <span class="text-xs text-gray-500 mt-1">2rem (8)</span>
+        </div>
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-gray-300" style="width: 100px; height: 3rem"></div>
+          <span class="text-xs text-gray-500 mt-1">3rem (12)</span>
+        </div>
+        <div class="flex flex-col items-center mb-3">
+          <div class="bg-gray-300" style="width: 100px; height: 4rem"></div>
+          <span class="text-xs text-gray-500 mt-1">4rem (16)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Border Radius Section -->
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold mb-4">Border Radius</h2>
+      <div class="grid grid-cols-2 grid-cols-4">
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-confucius-lightGreen border border-confucius-green mb-2" style="border-radius: 0"></div>
+          <span class="text-xs text-gray-700">none</span>
+          <span class="text-xs text-gray-500">0</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-confucius-lightGreen border border-confucius-green mb-2" style="border-radius: 0.125rem"></div>
+          <span class="text-xs text-gray-700">sm</span>
+          <span class="text-xs text-gray-500">0.125rem</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-confucius-lightGreen border border-confucius-green mb-2" style="border-radius: 0.25rem"></div>
+          <span class="text-xs text-gray-700">DEFAULT</span>
+          <span class="text-xs text-gray-500">0.25rem</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-confucius-lightGreen border border-confucius-green mb-2" style="border-radius: 0.5rem"></div>
+          <span class="text-xs text-gray-700">lg</span>
+          <span class="text-xs text-gray-500">0.5rem</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-confucius-lightGreen border border-confucius-green mb-2" style="border-radius: 1rem"></div>
+          <span class="text-xs text-gray-700">2xl</span>
+          <span class="text-xs text-gray-500">1rem</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 bg-confucius-lightGreen border border-confucius-green mb-2" style="border-radius: 9999px"></div>
+          <span class="text-xs text-gray-700">full</span>
+          <span class="text-xs text-gray-500">9999px</span>
+        </div>
+      </div>
+    </section>
+
     <!-- Hover States Section -->
     <section class="mb-12">
       <h2 class="text-xl font-semibold mb-4">Hover States</h2>
@@ -755,22 +1155,22 @@ const exportToHTML = () => {
         <div class="flex flex-wrap gap-4 mb-4">
           <button class="button button-primary">Primary Button</button>
           <button class="button button-secondary">Secondary Button</button>
-          <button class="button bg-white text-gray-700 hover:bg-gray-100">Tertiary Button</button>
+          <button class="button bg-white text-gray-700" style="border: 1px solid #e5e7eb;" onmouseover="this.style.backgroundColor='#f3f4f6';" onmouseout="this.style.backgroundColor='#ffffff';">Tertiary Button</button>
           <button class="button button-destructive">Destructive Button</button>
         </div>
       </div>
       
       <div class="mb-8">
         <h3 class="text-lg font-medium mb-3">Cards</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 grid-cols-2 gap-4">
           <!-- Default Card -->
-          <div class="bg-white border border-gray-200 p-4 rounded-lg shadow-sm hover-card">
+          <div class="hover-card bg-white border border-gray-200 p-4 rounded-lg shadow-sm">
             <h4 class="font-medium mb-2">Card Title</h4>
             <p class="text-gray-600 text-sm">This is a default card with hover effect. Try hovering over it.</p>
           </div>
           
           <!-- Course Card -->
-          <div class="bg-gradient-to-br from-white to-confucius-lightGreen border border-gray-200 rounded-lg overflow-hidden hover-card">
+          <div class="hover-card bg-gradient-green border border-gray-200 rounded-lg overflow-hidden">
             <div class="border-l-4 border-confucius-green p-4">
               <h4 class="font-medium mb-2">Course Card</h4>
               <p class="text-gray-600 text-sm">This is a course card with hover effect. Try hovering over it.</p>
@@ -782,9 +1182,9 @@ const exportToHTML = () => {
       <div>
         <h3 class="text-lg font-medium mb-3">Links</h3>
         <div class="flex flex-col gap-2">
-          <a href="#" class="text-confucius-blue hover:underline">Default Link</a>
-          <a href="#" class="text-confucius-green hover:underline hover:underline-offset-4">Primary Link</a>
-          <a href="#" class="text-gray-500 hover:text-gray-900">Secondary Link</a>
+          <a href="#" class="text-confucius-blue" onmouseover="this.style.textDecoration='underline';" onmouseout="this.style.textDecoration='none';">Default Link</a>
+          <a href="#" class="text-confucius-green" onmouseover="this.style.textDecoration='underline'; this.style.textUnderlineOffset='4px';" onmouseout="this.style.textDecoration='none';">Primary Link</a>
+          <a href="#" class="text-gray-500" onmouseover="this.style.color='#111827';" onmouseout="this.style.color='#6b7280';">Secondary Link</a>
         </div>
       </div>
     </section>
@@ -799,8 +1199,14 @@ const exportToHTML = () => {
         <div class="flex flex-wrap gap-4 mb-4">
           <button class="button button-primary">Primary Button</button>
           <button class="button button-secondary">Secondary Button</button>
-          <button class="button bg-transparent text-gray-700 hover:bg-gray-100">Tertiary Button</button>
+          <button class="button" style="background-color: transparent; color: #4b5563; border: 1px solid #e5e7eb;">Tertiary Button</button>
           <button class="button button-destructive">Destructive Button</button>
+        </div>
+        
+        <div class="flex flex-wrap gap-4">
+          <button class="button button-primary" style="font-size: 0.875rem; padding: 0.375rem 0.75rem;">Small Button</button>
+          <button class="button button-primary">Default Button</button>
+          <button class="button button-primary" style="font-size: 1.125rem; padding: 0.625rem 1.25rem;">Large Button</button>
         </div>
       </div>
       
@@ -818,39 +1224,39 @@ const exportToHTML = () => {
       <!-- Cards -->
       <div class="mb-8">
         <h3 class="text-lg font-medium mb-3">Cards</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 grid-cols-3 gap-6">
           <!-- YCT Course Card -->
-          <div class="bg-gradient-to-br from-white to-confucius-lightGreen border border-gray-200 rounded-lg shadow-sm overflow-hidden hover-card">
+          <div class="hover-card bg-gradient-green border border-gray-200 rounded-lg shadow-sm overflow-hidden">
             <div class="border-l-4 border-confucius-green p-6">
               <h3 class="font-semibold text-lg mb-2">YCT Course</h3>
               <p class="text-gray-600 mb-4">For children 7-12 years old</p>
               <div class="flex justify-between items-center">
                 <span class="badge bg-confucius-lightGreen text-confucius-green">Level 1</span>
-                <button class="button button-primary text-sm py-1">Enroll</button>
+                <button class="button button-primary" style="font-size: 0.875rem; padding: 0.25rem 0.5rem;">Enroll</button>
               </div>
             </div>
           </div>
           
           <!-- HSK Course Card -->
-          <div class="bg-gradient-to-br from-white to-confucius-lightBlue border border-gray-200 rounded-lg shadow-sm overflow-hidden hover-card">
+          <div class="hover-card bg-gradient-blue border border-gray-200 rounded-lg shadow-sm overflow-hidden">
             <div class="border-l-4 border-confucius-blue p-6">
               <h3 class="font-semibold text-lg mb-2">HSK Course</h3>
               <p class="text-gray-600 mb-4">For students 13+ years old</p>
               <div class="flex justify-between items-center">
                 <span class="badge bg-confucius-lightBlue text-confucius-blue">Level 1</span>
-                <button class="button button-primary text-sm py-1">Enroll</button>
+                <button class="button button-primary" style="font-size: 0.875rem; padding: 0.25rem 0.5rem;">Enroll</button>
               </div>
             </div>
           </div>
           
           <!-- VIP Course Card -->
-          <div class="bg-gradient-to-br from-white to-confucius-lightGold border border-gray-200 rounded-lg shadow-sm overflow-hidden hover-card">
+          <div class="hover-card bg-gradient-gold border border-gray-200 rounded-lg shadow-sm overflow-hidden">
             <div class="border-l-4 border-confucius-gold p-6">
               <h3 class="font-semibold text-lg mb-2">VIP Course</h3>
               <p class="text-gray-600 mb-4">One-on-one personalized sessions</p>
               <div class="flex justify-between items-center">
                 <span class="badge bg-confucius-lightGold text-confucius-gold">Custom</span>
-                <button class="button button-primary text-sm py-1">Contact</button>
+                <button class="button button-primary" style="font-size: 0.875rem; padding: 0.25rem 0.5rem;">Contact</button>
               </div>
             </div>
           </div>
@@ -860,31 +1266,31 @@ const exportToHTML = () => {
       <!-- Form Elements -->
       <div>
         <h3 class="text-lg font-medium mb-3">Form Elements</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
+        <div class="grid grid-cols-1 grid-cols-2 gap-6 max-w-2xl">
           <div class="space-y-1">
-            <label class="block text-sm font-medium text-gray-700" for="name">Full Name</label>
+            <label class="label" for="name">Full Name</label>
             <input 
               id="name" 
               type="text"
               placeholder="Enter your full name"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-confucius-green focus:ring-2 focus:ring-confucius-green/20"
+              class="input"
             />
           </div>
           
           <div class="space-y-1">
-            <label class="block text-sm font-medium text-gray-700" for="email">Email Address</label>
+            <label class="label" for="email">Email Address</label>
             <input 
               id="email" 
               type="email"
               placeholder="Enter your email"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-confucius-green focus:ring-2 focus:ring-confucius-green/20"
+              class="input"
             />
           </div>
         </div>
       </div>
     </section>
 
-    <footer class="mt-12 pt-8 border-t text-center text-gray-500">
+    <footer>
       <p>Balingkang Design System - Generated on ${new Date().toLocaleDateString()}</p>
     </footer>
   </div>
