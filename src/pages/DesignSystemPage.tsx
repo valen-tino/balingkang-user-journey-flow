@@ -46,24 +46,32 @@ const TypographySample = ({
   </div>
 );
 
-const SpacingSample = ({ size }: { size: string }) => (
-  <div className="flex flex-col items-center mb-3">
-    <div 
-      className="bg-gray-300" 
-      style={{ 
-        width: '100px', 
-        height: typeof spacing[size as keyof typeof spacing] === 'string' ? 
-          spacing[size as keyof typeof spacing] as string : 
-          `${spacing[Number(size) as keyof typeof spacing]}rem` 
-      }} 
-    />
-    <span className="text-xs text-gray-500 mt-1">
-      {typeof spacing[size as keyof typeof spacing] === 'string' ?
-        spacing[size as keyof typeof spacing] :
-        `${spacing[Number(size) as keyof typeof spacing]}rem`}
-    </span>
-  </div>
-);
+const SpacingSample = ({ size }: { size: string }) => {
+  // Handle safe access to spacing values with proper type handling
+  const spacingValue = (() => {
+    const key = size as keyof typeof spacing;
+    if (key in spacing) {
+      const value = spacing[key];
+      return typeof value === 'number' ? `${value}rem` : value;
+    }
+    return size;
+  })();
+
+  return (
+    <div className="flex flex-col items-center mb-3">
+      <div 
+        className="bg-gray-300" 
+        style={{ 
+          width: '100px', 
+          height: spacingValue
+        }} 
+      />
+      <span className="text-xs text-gray-500 mt-1">
+        {spacingValue}
+      </span>
+    </div>
+  );
+};
 
 const DesignSystemPage = () => {
   return (
