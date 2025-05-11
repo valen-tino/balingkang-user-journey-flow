@@ -1,4 +1,3 @@
-
 import { 
   colors, 
   typography, 
@@ -53,11 +52,15 @@ const SpacingSample = ({ size }: { size: string }) => (
       className="bg-gray-300" 
       style={{ 
         width: '100px', 
-        height: spacing[size as keyof typeof spacing] || size 
+        height: typeof spacing[size as keyof typeof spacing] === 'string' ? 
+          spacing[size as keyof typeof spacing] as string : 
+          `${spacing[Number(size) as keyof typeof spacing]}rem` 
       }} 
     />
     <span className="text-xs text-gray-500 mt-1">
-      {spacing[size as keyof typeof spacing] || size}
+      {typeof spacing[size as keyof typeof spacing] === 'string' ?
+        spacing[size as keyof typeof spacing] :
+        `${spacing[Number(size) as keyof typeof spacing]}rem`}
     </span>
   </div>
 );
